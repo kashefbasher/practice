@@ -2,10 +2,8 @@ package com.stream;
 
 import com.vo.Employee;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class JStream {
@@ -34,11 +32,23 @@ public class JStream {
         System.out.println(map.getName());
     }
 
+    private void secondBiggest() {
+        Integer age = employeeList.stream().map(e-> e.getAge()).distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        System.out.println(age);
+    }
+
+    private void wordFrequency() {
+        List<String> words = Arrays.asList("apple", "banana", "apple", "cherry", "banana", "apple");
+        Map<String, Long> map = words.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        map.forEach((k,v)->System.out.println(k+" = "+ v));
+    }
 
     public static void main(String[] args) {
         JStream stream = new JStream();
         stream.groupBy();
         stream.partisionBy();
         stream.maxBy();
+        stream.secondBiggest();
+        stream.wordFrequency();
     }
 }

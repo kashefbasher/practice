@@ -1,6 +1,6 @@
 package com.vo;
 
-public class Employee {
+public class Employee implements Comparable {
 
     private String name;
     private Integer age;
@@ -24,5 +24,10 @@ public class Employee {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.name.compareTo(((Employee)o).getName());
     }
 }

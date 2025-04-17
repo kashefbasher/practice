@@ -17,6 +17,11 @@ public class JStream {
         employeeList.add(new Employee("doctor", 4));
     }
 
+    private void sort() {
+        List<Employee> map = employeeList.stream().sorted((e1,e2)->e1.compareTo(e2)).collect(Collectors.toCollection(ArrayList::new));
+        map.forEach((e) -> System.out.println(e.getName()));
+    }
+
     private void groupBy() {
         Map map = employeeList.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()));
         map.forEach((k,v) -> System.out.println(k+" = "+v));
@@ -43,12 +48,21 @@ public class JStream {
         map.forEach((k,v)->System.out.println(k+" = "+ v));
     }
 
+    private void charCount() {
+        String name = "kAshifbashir";
+        ArrayList<Character> cList = name.chars().mapToObj(c-> (char)c).collect(Collectors.toCollection(ArrayList::new));
+        Map map = cList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        map.forEach((k,v)->System.out.println(k+" - "+v));
+    }
+
     public static void main(String[] args) {
         JStream stream = new JStream();
+        stream.sort();
         stream.groupBy();
         stream.partisionBy();
         stream.maxBy();
         stream.secondBiggest();
         stream.wordFrequency();
+        stream.charCount();
     }
 }

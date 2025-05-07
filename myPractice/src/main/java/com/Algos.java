@@ -69,7 +69,7 @@ public class Algos {
 
             for (int j=0; j<i;++j) {
 
-                if(nums[j]<nums[i]) {
+                if(nums[i]>nums[j]) {
                     // counts[i] = (counts[i] > counts[j+1]) ? counts[i] : counts[j]+1;
                     counts[i] = Math.max(counts[i], counts[j]+1);
                 }

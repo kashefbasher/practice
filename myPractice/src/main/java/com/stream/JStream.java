@@ -12,11 +12,16 @@ public class JStream {
     Logger logger = Logger.getLogger(this.getClass().getName());
     List<Employee> employeeList = new ArrayList<>();
 
+    List<String> l1 = Arrays.asList("JAVA", "PYTHON");
+    List<String> l2 = Arrays.asList("AWS", "CLOUD");
+    List<String> l3 = Arrays.asList("ORACLE", "RDS");
+    List<String> l4 = Arrays.asList("JENKINS", "GIT");
+
     public JStream() {
-        employeeList.add(new Employee("bravo", 2));
-        employeeList.add(new Employee("alpha", 3));
-        employeeList.add(new Employee("charli", 2));
-        employeeList.add(new Employee("doctor", 4));
+        employeeList.add(new Employee("bravo", 2, l1));
+        employeeList.add(new Employee("alpha", 3, l2));
+        employeeList.add(new Employee("charli", 2, l3));
+        employeeList.add(new Employee("doctor", 4, l4));
     }
 
     private void sort() {
@@ -71,6 +76,19 @@ public class JStream {
         System.out.println("------------------");
     }
 
+    private void flatMap() {
+
+        System.out.println("flatMap()");
+
+        List<List<String>> listOfLists = Arrays.asList(l1,l2,l3);
+
+        Arrays.asList(l1,l2,l3).stream().flatMap(list -> list.stream()).collect(Collectors.toList()).forEach(System.out::println);
+        System.out.println("\n");
+        employeeList.stream().flatMap(e -> e.getList().stream()).collect(Collectors.toList()).forEach(System.out::println);
+
+        System.out.println("------------------");
+    }
+
     public static void main(String[] args) {
         JStream stream = new JStream();
         stream.sort();
@@ -80,5 +98,6 @@ public class JStream {
         stream.secondBiggest();
         stream.wordFrequency();
         stream.charCount();
+        stream.flatMap();
     }
 }

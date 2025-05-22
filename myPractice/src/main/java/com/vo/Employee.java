@@ -1,13 +1,18 @@
 package com.vo;
 
+import java.util.List;
+
 public class Employee implements Comparable {
 
     private String name;
     private Integer age;
 
-    public Employee(String name, Integer age) {
+    private List<String> list;
+
+    public Employee(String name, Integer age, List<String> list) {
         this.name = name;
         this.age = age;
+        this.list = list;
     }
 
     public String getName() {
@@ -24,6 +29,14 @@ public class Employee implements Comparable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
     }
 
     @Override

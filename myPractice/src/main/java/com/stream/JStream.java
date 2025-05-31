@@ -69,7 +69,7 @@ public class JStream {
 
     private void charCount() {
         System.out.println("charCount()");
-        String name = "kAshifbashir";
+        String name = "akAshifbashir";
         ArrayList<Character> cList = name.chars().mapToObj(c-> (char)c).collect(Collectors.toCollection(ArrayList::new));
         Map map = cList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         map.forEach((k,v)->System.out.println(k+" - "+v));

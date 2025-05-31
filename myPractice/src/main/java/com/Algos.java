@@ -1,6 +1,6 @@
 package com;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Algos {
 
@@ -15,6 +15,7 @@ public class Algos {
         }
         System.out.println(sum);
     }
+
     static void sumElements() {
 
         int sum = 7;
@@ -84,7 +85,6 @@ public class Algos {
             for (int j=0; j<i;++j) {
 
                 if(nums[i]>nums[j]) {
-                    // counts[i] = (counts[i] > counts[j+1]) ? counts[i] : counts[j]+1;
                     counts[i] = Math.max(counts[i], counts[j]+1);
                 }
             }
@@ -93,13 +93,64 @@ public class Algos {
         return Arrays.stream(counts).max().getAsInt();
     }
 
+    static void longestString() {
+
+        String string = "axcvxyzabcdopz";
+        int[] ints = new int[string.length()];
+
+        for(int i=0; i<string.length(); i++) {
+            ints[i] = (int)string.charAt(i);
+        }
+
+        List<Integer> n = new ArrayList<>();
+        Map<Integer, List<Integer>> map = new HashMap<>();
+
+        for(int i=0; i<ints.length; i++) {
+
+            if(i==ints.length-1) break;
+
+            if(ints[i] == ints[i+1]-1) {
+                if(!n.contains(ints[i])) {
+                    n.add(ints[i]);
+                }
+                if(!n.contains(ints[i+1])) {
+                    n.add(ints[i+1]);
+                }
+            } else {
+                map.put(n.size(),n);
+                n = new ArrayList<>();
+            }
+        }
+
+        Integer max = map.keySet().stream().max((x,y)-> x.compareTo(y)).get();
+
+        map.get(max).forEach(v-> System.out.print(((char)v.intValue()) +" "));
+
+        System.out.print(map.get(max));
+    }
+
+
+    void missingNumber() {
+
+        int[] arr = {2,4,5,7};
+
+        for(int i=0; i<arr.length-1;i++) {
+
+            if(arr[i]+1 != arr[i+1]) {
+                System.out.println(arr[i]+1);
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         Algos algos = new Algos();
-//        algos.sumNumbers();
-//        algos.sumElements();
-//        algos.sortElements();
-//        System.out.println(algos.isPrime(11));
+        algos.sumNumbers();
+        algos.sumElements();
+        algos.sortElements();
+        System.out.println(algos.isPrime(3));
         System.out.print(algos.lengthOfLIS());
+        algos.missingNumber();
+        longestString();
     }
 }

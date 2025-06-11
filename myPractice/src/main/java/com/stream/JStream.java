@@ -47,7 +47,7 @@ public class JStream {
 
     private void maxBy() {
         System.out.println("maxBy()");
-        Employee map = employeeList.stream().max(Comparator.comparing(Employee::getAge)).stream().findFirst().get();
+        Employee map = employeeList.stream().max(Comparator.comparing(Employee::getAge)).get();
         System.out.println(map.getName());
         System.out.println("------------------");
     }

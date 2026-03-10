@@ -19,6 +19,7 @@ public class LRUCache<K,V> {
         cache.put(2,20);
         cache.put(3,30);
         cache.put(4,40);
+//        System.out.println("Value of key 2 is  - " + cache.get(2));
         cache.put(5,50);
         System.out.println("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
         cache.print();

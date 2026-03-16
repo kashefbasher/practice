@@ -64,14 +64,23 @@ public class JStream {
         List<String> words = Arrays.asList("apple", "banana", "apple", "cherry", "banana", "apple");
         Map<String, Long> map = words.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         map.forEach((k,v)->System.out.println(k+" = "+ v));
+
+        int max = 0;
+        for(Object x : map.values()) {
+            Long i = (Long) x;
+            if(i.intValue()>max){
+                max=i.intValue();
+            }
+        }
+
         System.out.println("------------------");
     }
 
     private void charCount() {
         System.out.println("charCount()");
         String name = "akAshifbashir";
-        ArrayList<Character> cList = name.chars().mapToObj(c-> (char)c).collect(Collectors.toCollection(ArrayList::new));
-        Map map = cList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<Character, Long> map = name.chars().mapToObj(i -> Character.valueOf((char)i)).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
         map.forEach((k,v)->System.out.println(k+" - "+v));
         System.out.println("------------------");
     }

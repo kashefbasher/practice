@@ -91,7 +91,7 @@ public class JStream {
 
         List<List<String>> listOfLists = Arrays.asList(l1,l2,l3);
 
-        Arrays.asList(l1,l2,l3).stream().flatMap(list -> list.stream()).collect(Collectors.toList()).forEach(System.out::println);
+        listOfLists.stream().flatMap(list -> list.stream()).collect(Collectors.toList()).forEach(System.out::println);
         System.out.println("\n");
         employeeList.stream().flatMap(e -> e.getList().stream()).collect(Collectors.toList()).forEach(System.out::println);
 

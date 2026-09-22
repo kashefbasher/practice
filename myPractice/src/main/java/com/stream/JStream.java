@@ -26,14 +26,17 @@ public class JStream {
 
     private void sort() {
         System.out.println("sort()");
-        List<Employee> map = employeeList.stream().sorted((e1,e2)->e1.compareTo(e2)).collect(Collectors.toCollection(ArrayList::new));
-        map.forEach((e) -> System.out.println(e.getName()));
+        List<Employee> list = employeeList.stream().sorted((e1,e2)->e1.compareTo(e2)).collect(Collectors.toCollection(ArrayList::new));
+        list = employeeList.stream().sorted(Comparator.comparing(Employee::getName).reversed()).collect(Collectors.toCollection(ArrayList::new));
+
+        list.forEach((e) -> System.out.println(e.getName()));
         System.out.println("------------------");
     }
 
     private void groupBy() {
         System.out.println("groupBy()");
         Map map = employeeList.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()));
+        map = employeeList.stream().collect(Collectors.groupingBy(Employee::getAge));
         map.forEach((k,v) -> System.out.println(k+" = "+v));
         System.out.println("------------------");
     }

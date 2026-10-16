@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class JStream {
 
@@ -101,6 +102,18 @@ public class JStream {
         System.out.println("------------------");
     }
 
+
+    public void topFourSum() {
+
+        System.out.println("topFourSum()");
+
+        int[] arr = {3,2,4,1,9,8,7,6};
+
+        int sum = IntStream.of(arr).boxed().sorted(Comparator.reverseOrder()).limit(4).mapToInt(Integer::intValue).sum();
+
+        System.out.println("Sum "+sum);
+
+    }
     public static void main(String[] args) {
         JStream stream = new JStream();
         stream.sort();
@@ -111,5 +124,6 @@ public class JStream {
         stream.wordFrequency();
         stream.charCount();
         stream.flatMap();
+        stream.topFourSum();
     }
 }

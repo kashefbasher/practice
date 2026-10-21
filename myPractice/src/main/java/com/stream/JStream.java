@@ -108,12 +108,25 @@ public class JStream {
         System.out.println("topFourSum()");
 
         int[] arr = {3,2,4,1,9,8,7,6};
-
         int sum = IntStream.of(arr).boxed().sorted(Comparator.reverseOrder()).limit(4).mapToInt(Integer::intValue).sum();
 
         System.out.println("Sum "+sum);
-
     }
+
+    public void duplicateFinder() {
+
+        System.out.println("duplicateFinder()");
+
+        List<String> items = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+
+        // Find duplicates by counting occurrences
+        Set<String> duplicates = items.stream().collect(Collectors.groupingBy(element -> element, Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey).collect(Collectors.toSet());
+
+        System.out.println("duplicates : "+duplicates); // Output: [apple, banana]
+    }
+
     public static void main(String[] args) {
         JStream stream = new JStream();
         stream.sort();
@@ -125,5 +138,6 @@ public class JStream {
         stream.charCount();
         stream.flatMap();
         stream.topFourSum();
+        stream.duplicateFinder();
     }
 }
